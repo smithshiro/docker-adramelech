@@ -1,0 +1,5 @@
+.env
+src/server/**/*
+!src/server/.gitkeep
+src/front/**/*
+!src/front/.gitkeep
