@@ -32,11 +32,11 @@ $ sh generate_env.sh
 $ cat .env
 ENV=local
 TZ=Asia/Tokyo
-NGINX_FRONT_PORT=10080
+NGINX_FRONT_PORT=10088
 NGINX_SERVER_PORT=13000
 MYSQL_PORT=13306
-MYSQL_DATABASE=noh-guide
-MYSQL_USER=noh-guide
+MYSQL_DATABASE=db
+MYSQL_USER=db
 MYSQL_PASSWORD=password
 MYSQL_ROOT_PASSWORD=root
 ```
@@ -53,11 +53,11 @@ $ docker-compose up -d
 #### Confirm the docker environment
 ```bash
 $ docker-compose ps
-          Name                         Command               State                       Ports
--------------------------------------------------------------------------------------------------------------------
-docker-adramelech_mysql_1   docker-entrypoint.sh mysqld      Up      0.0.0.0:13306->3306/tcp, 33060/tcp
-docker-adramelech_nginx_1   /docker-entrypoint.sh ngin ...   Up      0.0.0.0:13000->3000/tcp, 0.0.0.0:10080->80/tcp
-docker-adramelech_node_1    docker-entrypoint.sh node        Up      3000/tcp
+          Name                         Command               State                                         Ports
+------------------------------------------------------------------------------------------------------------------------------------
+docker-adramelech_mysql_1   docker-entrypoint.sh mysqld      Up      0.0.0.0:13306->3306/tcp,:::13306->3306/tcp, 33060/tcp
+docker-adramelech_nginx_1   /docker-entrypoint.sh ngin ...   Up      0.0.0.0:13000->3000/tcp,:::13000->3000/tcp, 0.0.0.0:10088->80/tcp,:::10088->80/tcp
+docker-adramelech_node_1    docker-entrypoint.sh /bin/ ...   Up      0.0.0.0:33000->3000/tcp,:::33000->3000/tcp
 docker-adramelech_php_1     docker-php-entrypoint php-fpm    Up      9000/tcp
 ```
 ### Clean install Laravel and Next.js application
@@ -70,5 +70,5 @@ $ sh initialize_laravel.sh
 ```
 #### For clean install next.js application
 ```bash
-$ sh next.hs
+$ sh initialize_next.sh
 ```
