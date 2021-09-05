@@ -1,13 +1,13 @@
 #!/bin/bash
 # Nextをクリーンインストールするスクリプトです
-if [ ! -D ./src/front ]; then
+if [ ! -d ./src/front ]; then
   mkdir -p ./src/front
 fi
-rm -rf ./src/front/.*
-rm -rf ./src/front/*
+rm -rf ./src/front/.* 2>&1 > /dev/null
+rm -rf ./src/front/* 2>&1 > /dev/null 
 
-docker-compose exec node npx create-next-app .
-docker-compose exec node npm run dev
+docker-compose run node npx create-next-app /var/www/front
+docker-compose run node npm --cwd /var/www/front run dev
 
 touch ./src/front/.gitkeep
 # Gitのサブモジュールをインストールしたい
