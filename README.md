@@ -44,11 +44,12 @@ MYSQL_ROOT_PASSWORD=root
 #### Run this command
 You just run under this command.
 ```bash
+$ docker-compose build
+# Initialize Laravel
+$ sh initialize_laravel.sh
+# Initialize Next.js
+$ sh initialize_next.sh
 $ docker-compose up
-```
-If you run processes in background.
-```bash
-$ docker-compose up -d
 ```
 #### Confirm the docker environment
 ```bash
